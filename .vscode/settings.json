@@ -1,6 +1,6 @@
 {
     "go.coverOnSave": true,
-    "go.testFlags": [
-        "-v"
-    ]
+    // "go.testFlags": [
+    //     "-v"
+    // ]
 }
