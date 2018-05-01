@@ -2,6 +2,8 @@ package main
 
 import (
 	"errors"
+	"flag"
+	"fmt"
 	"testing"
 
 	"github.com/Smarp/funcmock"
@@ -9,6 +11,8 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )
+
+var update = flag.Bool("update", false, "update golden files")
 
 func TestMyFunctionExpec(t *testing.T) {
 	assert.Equal(t, 70, myFunction(50, 20))
@@ -18,6 +22,8 @@ func TestMyFunctionUse(t *testing.T) {
 	c := funcmock.Mock(&myFunc)
 	c.SetDefaultReturn(30)
 	defer c.Restore()
+
+	fmt.Printf("=> update %+v\n", *update)
 
 	assert.Equal(t, "=> 30", myFunctionUse())
 	assert.Equal(t, 1, c.CallCount())
